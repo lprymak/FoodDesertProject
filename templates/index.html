@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Food Deserts</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+      <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script>
+    
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Vollkorn:700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            
+          <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/d3Style.css">
+      
+      </head>
+      
+      <body>
+          <button id="myBtn" title="Go to top">Top</button>
+<!-- Nav bar -->
+        <div class="container.fluid">
+      
+          <div class="row">
+            <div class="col-12 mt-2 topBar">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <span class="navbar-brand" href="#">Food Deserts</span>
+                    <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav" style="margin-left: auto;">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="#scatter">Identify<span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sizeRelations">Visualize</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#stText">Rank</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#comparison">Compare</a>
+                        </li>    
+                        <li class="nav-item">
+                            <a class="nav-link" href="#countyFilter">Locate</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#def">Define</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+            </div>
+          </div>
+      
+<!-- Choropleth Heading -->
+          <div class="row info">
+            <br>
+            <h3  class="titles" style="margin-top: 2%;">In what counties are
+              food deserts most prominent?
+            </h3>
+      
+            <div class="col-xl-6 col-12 introText">
+              <p>For this project we were concerned with
+                analyzing the lack of access to healthy and fresh food choices in the US.
+                A food desert is an area with a lack of access to a supermarket. For urban areas this means the % of the
+                population which needs to travel
+                a mile or more to a supermarket. For rural areas the distance to the nearest supermarket is 10 miles or more.
+                Our goal was to create a tool for government policy makers as well as retail supermarkets to spot counties: 
+              </p>
+            </div>
+
+            <div class="col-xl-6 col-12 topList">
+              <li>They can better serve the communities which need them the most and are already suffering from a lack of
+                supermarkets (i.e. counties with Food Deserts) by opening new locations which are also
+                most likely to generate higher sales due to a current lack of supply of fresh food choices
+              </li>
+      
+              <br>
+              <li>The most potential in regards to their target market (can examine different variables such as total
+                population and per capita income)
+              </li>
+      
+              <br>
+              <p>We have also included additional information which compares various census data points with the counties
+                which have the highest & lowest % of the population effected by food deserts in order to examine any immediate
+                patterns.
+                Note that counties with a populations of 20,000 or less have been filtered out.
+              </p>
+            </div>
+
+            
+<!-- Choropleth -->
+            <div class="col-xl-9 col-12">
+              <div id="map"></div>
+            </div>
+      
+<!-- Summary -->
+            <div class="col-xl-3 col-4 infoTable order-xl-0 order-1">
+              <h5 id="ctName"></h5>
+              <div id="summary"></div>
+            </div>
+      
+<!-- Scatter Plot -->
+            <div class="col-8 order-xl-1 order-0">
+              <div id="scatter"></div>
+            </div>
+      
+<!-- Scatter Text -->
+            <div class="col-xl-4 col-12 order-xl-2 order-2" id="overText">
+              <br>
+              <p>What can US Census data tell us about that county?
+                Click the x & y axis options in order to activate different dimensions from the US Census
+                Are you a supermarket chain looking to cater to your target market? If you are already interested in a 
+                certain county for a new location click the county and the map above and checkout where that county stands 
+                compared to the others when it comes to census data such as population, per capita income etc. Perhaps the 
+                county you are interested in matches your target market - if not no bog deal! Check out another county 
+                above on the map that may be a better fit or you can even click on a dot on the bubble chart to see what 
+                county does meet your target market!
+              </p>
+            </div>
+          </div>
+      
+          <div class="row"></div>
+          <div class="col-12" id="sizeRelations"></div>
+      
+<!-- Packed Bubble Text -->
+          <div class="row">
+            <h3 class="titles">Is there any correlatin between population size and the % of population affected by a food desert?</h3>
+            <div class="col-xl-6 col-12 order-xl-3 order-4" id="compText">
+              <p>Magenta bubbles represent counties with the highest % of the population affected by a food desert.
+                Blue bubbles represent counties with the lowest % of the population affected by a food desert.
+                In general counties with extremely large populations do not suffer from food deserts as much as those with
+                mid-size and
+                smaller populations, however there are still some very large counties which could benefit from supermarket
+                access!
+              </p>
+            </div>
+      
+<!-- Packed Bubble Dropdown -->
+            <div class="col-xl-6 col-12 order-xl-4 order-3">
+              <div class="dropdown show pbbtn">
+                <a class="btn btn-secondary dropdown-toggle bubblebtngr" role="button" id="dropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Population</a>
+                <div class="dropdown-menu dropdown-menu-right bubblebtngr" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item bubblebtn activeDropDown">Density</a>
+                  <a class="dropdown-item bubblebtn activeDropDown">Estimated Gini Index</a>
+                  <a class="dropdown-item bubblebtn activeDropDown">Median Age</a>
+                  <a class="dropdown-item bubblebtn activeDropDown">Per Capita Income</a>
+                  <a class="dropdown-item bubblebtn activeDropDown">Home Value</a>
+                  <a class="dropdown-item bubblebtn inactiveDropDown" >Population</a>
+                </div>
+              </div>
+      
+<!-- Packed Bubbles Chart -->
+              <div id="bubbles"></div>
+            </div>
+          </div>
+      
+          <div class="w-100"></div>
+            
+          <div class="row">
+<!-- State Intro Text -->
+            <div class="col-xld-12 stText" id="stText">
+<!-- Title-->
+              <br>
+              <h3  class="titles">Where does your state fall when it comes to overall food access?
+              </h3>
+              <br>
+              <p > Are you a legislator allocating budget to help fight off food deserts on a federal level? This visualization
+                can help
+                give you a better idea of how to best allocate that budget by comparing the state's total population,
+                Low Access Total and Low Access %. California would not be the most efficient place to spend this budget as it
+                has the
+                lowest % of population effected by a food desert while New Mexico and Alaska could use more budget with the
+                highest percentages
+                of people compared to their population with a lack of access to supermarkets.
+              </p>
+              <p style="font-size: 12px; text-align: center; margin-left: 5%;">*Rollover state names to see low food acces to population ratio. Click to see rank.</p>
+            </div>
+<!-- State Chart -->
+            <div class="col-12" style="top: 10%;" id="st"></div>
+      
+            <div class="col-12" id="comparison">
+              <div class="container.fluid">
+                <div class="row" >
+<!-- Comparison Text -->
+                  <div class="col-12 ">
+                    <h3 class="titles">How to the 30 counties with the top and bottom % of food deserts compare?</h3>
+                    <p> Check out the differences between the counties with the highest and lowest % of the population
+                      effected by food deserts
+                      and their corresponding census data points. some of the most extreme differences can be seen in SNAP
+                      recipients and
+                      gini index.
+                    </p>
+                  </div>
+<!-- Comparison Dropdown -->
+                  <div class="col-xl-6 col-12">
+                    <div class="dropdown show ">
+                      <a class="btn btn-secondary dropdown-toggle bxbtngp" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Poverty Rate Change</a>
+                      <div class="dropdown-menu dropdown-menu-right bxbtngp" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item bxbtn inactiveDropDown">Poverty Rate Change</a>
+                        <a class="dropdown-item bxbtn activeDropDown">Snap Recipients</a>
+                        <a class="dropdown-item bxbtn activeDropDown">Estimated Gini Index</a>
+                        <a class="dropdown-item bxbtn activeDropDown">Median Age</a>
+                        <a class="dropdown-item bxbtn activeDropDown">Per Capita Income</a>
+                        <a class="dropdown-item bxbtn activeDropDown">Home Value</a>
+                        <a class="dropdown-item bxbtn activeDropDown">Density</a>
+                      </div>
+                    </div>
+<!-- Comparison Plot -->
+                    <div id="one"></div>
+                  </div>
+<!-- Comparison Table -->
+                  <div class="col-xl-6 col-12" id="two"></div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="w-100"></div>
+      
+            <div class="row" id="countyFilter">
+              <div class="col-12">
+              <div class="col-xld-12 mapText">
+<!-- Locator Intro -->
+                <h3  class="titles">Which counties have the most potential for a supermarket
+                  retailer?
+                </h3>
+                <br>
+<!-- Description -->
+                <p style="margin-left: 5%;">Simply click on the variable you would like to define in the filter below to checkout locations of interest. 
+                   You can filter multiple variables at the same time just use the drop down to further specify your search in 
+                   order to define your target market.
+                </p>
+              </div>
+      
+              <div class="row">
+              <div class="col-xl-8 col-12" id="leafletmap" style="top: 10%;">
+                <div class="card rounded mapcard">
+                  <div class="card-header" id="sliders">
+<!-- Reset Filters Button -->
+                      <button type="button" class="btn btn-secondary resetbtn" style="float: right;">Reset</button>
+<!-- Locator Dropdown -->
+                    <div class="dropdown show" style="z-index: 1000; margin-bottom: 1%;">
+                      <a class="btn btn-secondary dropdown-toggle mapbtngp" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Food Desert Ratio</a>
+                      <div class="dropdown-menu dropdown-menu-right mapbtngp" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item mapbtn inactiveDropDown">Food Desert Ratio</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Population</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Population Density</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Per Capita Income</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Household Income</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Median Age</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Estimated Gini Index</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Home Value</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Snap Recipients</a>
+                        <a class="dropdown-item mapbtn activeDropDown">Poverty Rate (%)</a>
+                      </div>
+                    </div>
+<!-- Locator Sliders -->      
+                    <div class="row" id="fd_slider" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_fd"></div>
+                      <div class="col-8" id="sildervar_fd"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_fd"></div>
+                    </div>
+      
+                    <div class="row" id="pop_slider" style="translate(0px, -40px)"  style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_pop"></div>
+                      <div class="col-8" id="sildervar_pop"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_pop"></div>
+                    </div>
+      
+                    <div class="row" id="popden_slider" style="translate(0px, -80px)" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_popden"></div>
+                      <div class="col-8" id="sildervar_popden"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_popden"></div>
+                    </div>
+      
+                    <div class="row" id="pcincome_slider" style="translate(0px, -120px)" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_pcincome"></div>
+                      <div class="col-8" id="sildervar_pcincome"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_pcincome"></div>
+                    </div>
+      
+                    <div class="row" id="hhincome_slider" style="translate(0px, -160px)" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_hhincome"></div>
+                      <div class="col-8" id="sildervar_hhincome"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_hhincome"></div>
+                    </div>
+      
+                    <div class="row" id="medage_slider" style="translate(0px, -200px)" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_medage"></div>
+                      <div class="col-8" id="sildervar_medage"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_medage"></div>
+                    </div>
+      
+                    <div class="row" id="gini_slider" style="translate(0px, -240px)" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_gini"></div>
+                      <div class="col-8" id="sildervar_gini"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_gini"></div>
+                    </div>
+      
+                    <div class="row" id="home_slider" style="translate(0px, -280px)" style="width: 100%;">
+                      <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_home"></div>
+                      <div class="col-8" id="sildervar_home"></div>
+                      <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_home"></div>
+                    </div>
+
+                    <div class="row" id="snap_slider" style="translate(0px, -280px)" style="width: 100%;">
+                        <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_snap"></div>
+                        <div class="col-8" id="sildervar_snap"></div>
+                        <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_snap"></div>
+                    </div>
+
+                    <div class="row" id="pov_slider" style="translate(0px, -280px)" style="width: 100%;">
+                        <div class="col-2"><input type="number" min='1' max='35675999' id="input_min_pov"></div>
+                        <div class="col-8" id="sildervar_pov"></div>
+                        <div class="col-2"><input type="number" min='2' max='35676000' id="input_max_pov"></div>
+                    </div>
+      
+                  </div>
+                </div>
+<!-- Locator Map -->
+                <div class="card-body" id="locator"></div>>
+              </div>
+              <div class="col-xl-4 col-12" id="filters">
+                  <div class="card ">
+                    <div class="card-head filterResultTotal"></div>
+                    <div class="card-body" id="filterNumbers"></div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" class="btn btn-secondary resultsbtn" style="float: right; top: -5%;">See Results</button>
+
+                    <div class="card border-0">
+                      <div class="card-body border-0 filterTable">
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    <div class = "row">
+      <div class="col-12">
+        <h3  class="titles" id="def">Definitions</h3>
+      </div>
+<!-- Definitions Table -->
+      <div class="col-12" id="def">
+        <div class="card border-0">
+    <div class= "table-responsive"  >
+        <table class="table table-striped table-hover definitions">
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                    <th>Source</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Food Desert Access 2015 </td>
+                    <td> 
+                    Low access to supermarkets, population at 1 mile for urban areas and 10 miles for rural areas, number.
+                    This Low access number was summed at a county level and then divided by the total Census population in 2015 in order to normalize the data.
+                    A Low access area is defined as an area having limited access to supermarkets, supercenters, and large grocery stores. </td>
+                    </td>
+                    <td><a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/"target="_blank"> US Department of Agriculture 2015 Data</a></td>
+                    
+                </tr>
+
+                <tr>
+                    <td>Business & Employee Data (Overall & Retail Industry)</td>
+                    <td>
+                    The number of businesses and employees per county.  The County Business Patterns (CBP) is an annual series that provides subnational economic data by industry. 
+                    This series includes the number of establishments, employment during the week of March 12, first quarter payroll, and annual payroll.</td>
+                    <br> </td>
+                    <td><a href="https://www.census.gov/programs-surveys/cbp.html"target="_blank"> US Census Bureau</a></td>
+                        
+                </tr>
+
+                <tr>
+                    <td>Estimated Gini Index</td>
+                    <td>
+                        The Gini Index is a summary measure of income inequality. The Gini coefficient incorporates the detailed shares data into a single statistic, which summarizes the dispersion of income across the entire income distribution. 
+                        The Gini coefficient ranges from 0, indicating perfect equality (where everyone receives an equal share), to 1, perfect inequality (where only one recipient or group of recipients receives all the income). 
+                        The Gini is based on the difference between the Lorenz curve (the observed cumulative income distribution) and the notion of a perfectly equal income distribution.</td>
+                    <br> </td>
+                    <td><a href="https://www.census.gov/topics/income-poverty/income-inequality/about/metrics/gini-index.html"target="_blank"> US Census Bureau</a></td>
+                    
+                </tr>
+
+                <tr>
+                    <td>Median Home Value</td>
+                    <td>Value is the respondent's estimate of how much the property (house and lot) would sell for if it were for sale.
+                        This tabulation includes only specified owner-occupied housing units--one-family houses on less than 10 acres without a business or medical office on the property. 
+                        These data exclude mobile homes, houses with a business or medical office, houses on 10 or more acres, and housing units in multi-unit structures. Certain tabulations elsewhere include the value of all owner-occupied housing units and vacant-for-sale housing units. 
+                        </td>
+                    <td><a href="https://www.census.gov/"target="_blank"> US Census Bureau</a></td> 
+                </tr>
+
+                <tr>
+                    <td>Median Household Income</td>
+                    <td>Median Household Income in the past 12 months (adjusted for inflation by year)</td>
+                    <td><a href="https://www.census.gov/"target="_blank"> US Census Bureau</a></td> 
+                </tr>
+
+                <tr>
+                    <td>Per Capita Income</td>
+                    <td>Per capita income is the mean income computed for every man, woman, and child in a particular group including those living in group quarters. 
+                        It is derived by dividing the aggregate income of a particular group by the total population in that group.</td>
+                    <td><a href="https://www.census.gov/"target="_blank"> US Census Bureau</a></td> 
+                </tr>
+
+                <tr>
+                    <td>Poverty Rate</td>
+                    <td>The number of people per county under the poverty threshold information was retrieved via the US Census API's Python wrapper.  This number was then divided by the total population in that area for the poverty rate.
+                        Following the Office of Management and Budget's (OMB) Statistical Policy Directive 14, the Census Bureau uses a set of money income thresholds that vary by family size and composition to determine who is in poverty. 
+                        If a family's total income is less than the family's threshold, then that family and every individual in it is considered in poverty. 
+                        The official poverty thresholds do not vary geographically, but they are updated for inflation using the Consumer Price Index (CPI-U). 
+                        The official poverty definition uses money income before taxes and does not include capital gains or noncash benefits (such as public housing, Medicaid, and food stamps).
+                    </td>
+                    <td><a href="https://www.census.gov/topics/income-poverty/poverty.html"target="_blank"> US Census Bureau</a></td> 
+                </tr>
+
+                <tr>
+                    <td>SNAP Data</td>
+                    <td>Estimate Total Household received Food Stamps/SNAP in the past 12 months.
+                    </td>
+                    <td><a href="https://www.census.gov/"target="_blank"> US Census Bureau</a></td> 
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+      </div>
+        <!-- </div>
+        </div>
+        </div> -->
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+        <script type="text/javascript" src="../static/js/main.js"></script>
+        <script type="text/javascript" src="../static/js/scatter.js"></script>
+        <script type="text/javascript" src="../static/js/states.js"></script>
+        <script type="text/javascript" src="../static/js/config.js"></script>
+        <script type="text/javascript" src="../static/js/locatormap.js"></script>
+        <script type="text/javascript" src="../static/js/comparison.js"></script>
+      
+      </body>
+      
+
+</html>

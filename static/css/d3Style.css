@@ -1,0 +1,308 @@
+.resultsbtn {
+  margin-top: -4%;
+}
+.d3-tip {
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1;
+  line-height: 1.5em;
+  color: #fff;
+  text-align: center;
+  text-transform: capitalize;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+.d3-tip_bubble {
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1;
+  line-height: 1.5em;
+  color: #fff;
+  text-align: center;
+  text-transform: capitalize;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+
+/* Text Classes ---------------------------------------------------- */
+/* Scatter Labels */
+.active {
+  font-weight: bold;
+  fill: #c9c9c9;
+  transition: fill 0.3s ease-out;
+  text-anchor: middle;
+}
+.inactive {
+  font-weight: lighter;
+  fill: rgb(65, 64, 64);
+  transition: fill 0.3s ease-out;
+  text-anchor: middle;
+}
+.inactive:hover {
+  fill: rgb(197, 196, 196);
+  cursor: pointer;
+}
+
+/* Map  ---------------------------------------------------- */
+#ctName {
+  padding: 5;
+  text-align: center;
+}
+#summary {
+  margin-right: 15%;
+  float: right;
+  z-index: 5000;
+  position: absolute;
+}
+
+
+/* Scatter ---------------------------------------------------- */
+.selected {
+  fill: #d4002b;
+  opacity: 1;
+  z-index: 1000;
+}
+.unselected {
+  fill: rgb(82, 81, 81);
+  opacity: 0.25;
+}
+.allunselected {
+  fill: #d4002b;
+  opacity: 0.5;
+}
+.x-axis path, .y-axis path{
+  stroke: #808080;
+}
+.x-axis text, line, .y-axis text, line{
+  stroke: #808080;
+}
+
+/* Packed Bubbles ---------------------------------------------------- */
+.bubble {
+  position: absolute;
+  /* top: -5%; */
+  left: -5%;
+}
+
+/* Boxplots ---------------------------------------------------- */
+.plot-container .plotly {
+  z-index: 0;
+}
+.card.comptable {
+  width: 100%;
+  height: 500px;
+}
+.card-body.comptable {
+  padding-top: 0;
+}
+
+/* Leaflet Map ---------------------------------------------------- */
+.leaflet-popup-content, .leaflet-popup-content-wrapper {
+  background-color: #c9c9c9;
+}
+.noUi-handle:after, .noUi-handle:before
+{
+  background-color: #d4002b;
+  height: 8px;
+}
+.noUi-handle {
+  background-color: rgb(82, 81, 81);
+  border: 0;
+  box-shadow: none !important;
+  height: 18px;
+  top: -1px;
+}
+.noUi-background {
+  background-color: rgb(29, 29, 29);
+  border: 0;
+  box-shadow: none;
+}
+.noUi-horizontal .noUi-handle {
+  height: 18px;
+  top: -1px;
+}
+.noUi-connect {
+  border: 0;
+  height: 16px;
+  background-color: #605f5f;
+}
+.noUi-target .noUi-ltr .noUi-horizontal .noUi-background {
+  background-color: rgb(29, 29, 29);
+}
+
+/* States ---------------------------------------------------- */
+.stateContainer {
+  background-color: #0000ff;
+  display: block;
+  overflow: hidden;
+}
+.stateNames {
+  font-size: 1rem;
+  font-family: sans-serif;
+  line-height: 0.5;
+  fill: white;
+}
+
+/* Tables ---------------------------------------------------- */
+table.comptable {
+  margin-left:auto; 
+	margin-right:auto;
+}
+th.comptable {
+  width: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+td.comptable {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 0.75rem;
+  color: #c9c9c9;
+  line-height: 1.2;
+}
+td.sumtable{
+  padding: 5px;
+  font-size: 1rem;
+  line-height: 1;
+  line-height: 1.5em;
+  text-transform: capitalize;
+}
+th.sumtable{
+  padding: 5px;
+  font-size: 1rem;
+  line-height: 1;
+  line-height: 1.5em;
+  text-transform: capitalize;
+}
+
+/* Media Change ---------------------------------------------------- */
+@media (max-width: 1000px){
+
+  html {
+    overflow-x: auto;
+  }
+  body {
+    overflow-x: auto;
+  }
+
+/* Text ---------------------------------------------------- */
+  .info li {
+    margin-left: 10%;
+  }
+  .infoTable {
+    left: 0%;
+  }
+  .topList {
+    margin-top: 3%;
+  }
+  .titles {
+    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 95%;
+  }
+  .introText {
+    padding-left: 0%;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h5 {
+    font-size: 1.75rem;
+  }
+  p {
+    margin-left: 5%;
+    font-size: 1.5rem;
+  }
+  body {
+    font-size: 1.5rem;
+  }
+  #sizeRelations {
+    margin-top: 0%;
+  }
+  #compText {
+    margin-bottom: 0%;
+  }
+  .stText {
+    margin-bottom: 5%;
+  }  
+
+  /* Map ---------------------------------------------------- */
+  .infoTable  {
+    left: 10%;
+    z-index: 100;
+  }
+  #summary {
+    margin-left: 0%;
+  }
+  .svg-container {
+    margin-left: auto;
+    margin-right: auto
+  }
+
+  /* Scatter ---------------------------------------------------- */
+
+  /* Boxplots ---------------------------------------------------- */
+  #two {
+    margin-bottom: 5%;
+  }
+  #comparison {
+    top: 5%;
+  }
+  td.comptable {
+    font-size: 16px;
+  }  
+
+  /* Packed Bubbles ---------------------------------------------------- */
+  .bubble {
+    top: 0%;
+    left: 0%;  
+    margin-left: 20%;
+  }
+
+  /* State ---------------------------------------------------- */
+  .lines {
+    width: 100%;
+    overflow-x: visible;
+  }
+  #st {
+    margin-left: -0.5%;
+    overflow-x: visible;
+  }
+  .stateContainer {
+    overflow-x: visible;
+  }
+
+  /* Leaflet ---------------------------------------------------- */
+  #countyFilter {
+    margin-top: 20%;
+  }
+  #filters .card {
+    margin-top: 0%;
+  }
+  #leafletmap {
+    margin-left: 0%;
+  }
+  #filterNumbers {
+    margin-left: 5%;
+  }
+  .filterTable  {
+    margin-top: 5%;
+  }
+  #def  {
+    margin-left: 0%;
+  } 
+}
+
+/* Media Change ---------------------------------------------------- */
+@media screen and (max-width: 530px) {
+  p {
+    font-size: 2rem !important;
+  }
+  h4 {
+    font-size: 16px;
+  }
+}
