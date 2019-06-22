@@ -279,7 +279,7 @@ function stateHover(objs, data, scale) {
             // If clicked on, create summary table, highlight corresponding circle in scatter plot
         }).on("click", function () {
             var color = d3.select(this).nodes()[0].style.fill;
-            var circles = d3.select('#scatter').selectAll('circle');
+            var circles = d3.select('#Scatter').selectAll('circle');
             // console.log(scale);
             d3.selectAll('.counties').classed('selectedCounty', false).classed('unselectedCounty', true);
             d3.selectAll('.counties').style('stroke', 'transparent');
@@ -327,7 +327,7 @@ function stateHover(objs, data, scale) {
     // When clicking on background
     d3.select('.chartBack').on('click', function () {
         // Resets scatter circles
-        var circles = d3.select('#scatter').selectAll('circle');
+        var circles = d3.select('#Scatter').selectAll('circle');
         circles
             .classed('allunselected', true).classed('selected', false).classed('unselected', false);
         d3.selectAll('.counties').classed('selectedCounty', false).classed('unselectedCounty', true);
@@ -390,7 +390,7 @@ function drawTable(arr, id) {
 
 // Function to match scatter circle to chosen county, returns corresponding scatter circle element
 function findChosenCircle(countyid) {
-    var scatterplots = d3.select('#scatter').selectAll('circle');
+    var scatterplots = d3.select('#Scatter').selectAll('circle');
     var chosenCircle = '';
 
     scatterplots.nodes().forEach(circle => {

@@ -220,19 +220,22 @@ th.sumtable{
   body {
     font-size: 1.5rem;
   }
-  #sizeRelations {
+  #overText {
+    margin-top: 0%;
+  }
+  #Visual {
     margin-top: 0%;
   }
   #compText {
     margin-bottom: 0%;
   }
   .stText {
-    margin-bottom: 5%;
+    margin-bottom: 0%;
   }  
 
   /* Map ---------------------------------------------------- */
   .infoTable  {
-    left: 10%;
+    left: -5%;
     z-index: 100;
   }
   #summary {
@@ -249,7 +252,7 @@ th.sumtable{
   #two {
     margin-bottom: 5%;
   }
-  #comparison {
+  #Comparison {
     top: 5%;
   }
   td.comptable {

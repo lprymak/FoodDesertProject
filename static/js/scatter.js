@@ -14,7 +14,7 @@ var swidth = svgScatterWidth - smargin.left - smargin.right;
 
 // Creates an svg wrapper, appends an svg group that will hold our chart
 var svgScatter = d3
-    .select("#scatter")
+    .select("#Scatter")
     .append("svg")
     .attr("width", svgScatterWidth)
     .attr("height", svgScatterHeight)
@@ -237,8 +237,8 @@ function activeLabel(label) {
 }
 
 function rolloverLabel() {
-    d3.select('#scatter').append('p').style('float', 'right').style('font-size', '12px').html('*Rollover marker for county info');
-    d3.select('#scatter').append('p').style('float', 'right').style('font-size', '12px').html('*Select marker for county summary above and to see location on map');
+    d3.select('#Scatter').append('p').style('float', 'right').style('font-size', '12px').html('*Rollover marker for county info');
+    d3.select('#Scatter').append('p').style('float', 'right').style('font-size', '12px').html('*Select marker for county summary above and to see location on map');
 }
 
 // Creates scatter plot

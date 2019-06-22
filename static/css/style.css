@@ -156,7 +156,7 @@ h3 {
 .mapText {
   margin-bottom: 2%;
 }
-#sizeRelations {
+#Visual {
   margin-top: 5%;
 }
 #overText {
@@ -222,7 +222,7 @@ tbody {
 }
 
 /* Boxplots ---------------------------------------------------- */
-#comparison {
+#Comparison {
   width: 100%;
   display: block;
   margin-top: 10%;
@@ -243,7 +243,7 @@ tbody {
   top: 5%;
   display: block;
   /* margin-top: 5%; */
-  margin-bottom: 5%;
+  margin-bottom: 10%;
   height: 500px;
   width: 100%;
   margin-left: 3%;
@@ -330,6 +330,7 @@ input {
 @media (min-width: 1360px) {
   #st {
     margin-left: 8%;
+    margin-bottom: 5%;
   }
   .pbbtn {
     margin-top: 0%;
