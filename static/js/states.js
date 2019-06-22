@@ -438,14 +438,25 @@ d3.json(stateurl, function (data) {
         .range([0, 200]);
 
     // Calls acd creates containers to use for stats and lines
-    var nameContainer = d3.select('#st').append('svg').attr('width', 1070).attr('height', 120)
-        .classed('stateContainer', true)
-        .attr("transform", `translate(0, 430)`);
-    var rectGroup = nameContainer.append('g').attr('width', 1100);
+    // var nameContainer = d3.select('#st').append('svg').attr('width', 1070).attr('height', 120)
+    //     .classed('stateContainer', true)
+    //     .attr("transform", `translate(0, 430)`);
+    // var rectGroup = nameContainer.append('g').attr('width', 1100);
 
-    var linesContainer = d3.select('#st').append('svg').attr('width', 1100).attr('height', 520)
-        .attr("transform", `translate(0, -220)`);
-    var lineGroup = linesContainer.append('g').classed('lines', true);
+    // var linesContainer = d3.select('#st').append('svg').attr('width', 1100).attr('height', 520)
+    //     .attr("transform", `translate(0, -220)`);
+    // var lineGroup = linesContainer.append('g').classed('lines', true);
+
+    var basecontainer = d3.select('#st').append('svg').attr('width', 1070).attr('height', 660);
+
+    var nameContainer = basecontainer.append('rect').attr('width', 1070).attr('height', 120)
+        .classed('stateContainer', true)
+        .style("fill", "#0000ff")
+        .attr("transform", `translate(0, 530)`);
+    var rectGroup = basecontainer.append('g').attr('width', 1070).attr('height', 120)
+        .attr("transform", `translate(0, 530)`);
+    
+    var lineGroup = basecontainer.append('g').classed('lines', true);
 
     // FUnction to create chart
     function horizontalChart() {
@@ -498,7 +509,8 @@ d3.json(stateurl, function (data) {
 
     // Creates container and mask for stats
     var statContainer = d3.select('.lines').append('g');
-    var sectionRect = statContainer.append('rect').attr('x', 10).attr('y', 50).attr('width', 1051).attr('height', 560)
+    var sectionRect = statContainer.append('rect').attr('x', 10).attr('y', 50).attr('width', 1051).attr('height', 460)
+    // var sectionRect = statContainer.append('rect').attr('x', 10).attr('y', 50).attr('width', 1051).attr('height', 560)
         .attr('rx', 10).attr('ry', 10)
         .style('fill', 'rgb(65, 64, 64)')
         .style('stroke', 'transparent')

@@ -242,7 +242,8 @@ tbody {
 #st {
   top: 5%;
   display: block;
-  margin-top: 5%;
+  /* margin-top: 5%; */
+  margin-bottom: 5%;
   height: 500px;
   width: 100%;
   margin-left: 3%;
@@ -256,7 +257,7 @@ input {
   border: 0;
   color: #c9c9c9;
 }
-#countyFilter {
+#Locate {
   margin-top: 5%;
 }
 .leaflet-control-layers-toggle {
