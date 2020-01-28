@@ -21,3 +21,6 @@ Site created in collaboration with Tina C. and Vanich V.
 ### Deployment
 
 Website http://www.fooddesert.info/ deployed using **Heroku** and **Postgres**
+
+
+![Image of Method]()
